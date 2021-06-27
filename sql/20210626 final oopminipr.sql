@@ -21,6 +21,19 @@ carreg varchar2(14) constraint member_carrg_uk unique not null,
 email varchar2(40) not null,
 address varchar2(40) not null
 );
+--member 데이터 입력
+insert into member values
+(MEMBER_MEMBERCODE_SEQ.nextval, 'member', '123456', '손흥민', '1111', 'member@naver.com', 'SEOUL');
+insert into member values
+(MEMBER_MEMBERCODE_SEQ.nextval, 'member1', '123456', '박지성', '2222', 'member1@naver.com', 'DAEJEON');
+insert into member values
+(MEMBER_MEMBERCODE_SEQ.nextval, 'member2', '123456', '이영표', '3333', 'member2@naver.com', 'NONSAN');
+insert into member values
+(MEMBER_MEMBERCODE_SEQ.nextval, 'member3', '123456', '이강인', '4444', 'member3@naver.com', 'BUSAN');
+insert into member values
+(MEMBER_MEMBERCODE_SEQ.nextval, 'member4', '123456', '이승우', '5555', 'member4@naver.com', 'ULSAN');
+
+
 --car 테이블 생성
 create table car(
 carcode number(4) constraint car_carcode_pk primary key,
@@ -67,9 +80,9 @@ insert into pay values(pay_paycode_seq.nextval, 30000,'big');
 
 --각 테이블의 전체 컬럼 보기
 select * from manager;
-select * from car;
+select * from car order by carcode;
 select * from rent;
-select * from member;
+select * from member order by membercode;
 select * from pay;
 
 -- rent table의 데이터가 들어가는 sql문 --> 6.26 : 자동차사이즈를 입력받아 저장된 금액과 날짜를 곱해 결제 금액을 알려주는 sql 작성완료.                                                                                                 
@@ -85,19 +98,6 @@ select r.rentcode, c.carnumber, c.carname, c.carsize, m.id, m.name, m.carreg, r.
 from car c, member m, rent r 
 where c.carcode = r.carcode and m.membercode = r.membercode;
 
-
---관리자가 1을 누르면 각 고객들이 대여중인 목록을 나타내는 sql
-select r.rentcode, c.carnumber, c.carname, c.carsize, m.id, m.name, m.carreg, r.pay,r.rentperiod,r.rent_date
-from car c, member m, rent r 
-where c.carcode = r.carcode and m.membercode = r.membercode and c.rentck = 1;
-
-select r.rentcode, c.carnumber, c.carname, c.carsize, m.id, m.name, m.carreg, r.pay,r.rentperiod,r.rent_date
-from car c, member m, rent r 
-where c.carcode = r.carcode and m.membercode = r.membercode and c.rentck = 0;
-
-delete from rent;
-update car set rentck = 0;
-select * from car;
 
 
 select * from rent;
