@@ -99,7 +99,6 @@ from car c, member m, rent r
 where c.carcode = r.carcode and m.membercode = r.membercode;
 
 
-
 select * from rent;
 --member 시퀀스 생성
 CREATE SEQUENCE member_membercode_SEQ

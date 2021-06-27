@@ -377,6 +377,7 @@ public class ManagerDao {
 		PreparedStatement pstmt = null;
 		try {
 			String sql = "insert into rent values(rent_rentcode_seq.nextval,? * (select paymoney from pay where carsize = ?),?,sysdate+?,(select carcode from car where carnumber = ?),(select membercode from member where carreg = ?),1)";
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, period);
 			pstmt.setString(2, carsize);
