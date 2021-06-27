@@ -88,7 +88,7 @@ select * from pay;
 -- rent table의 데이터가 들어가는 sql문 --> 6.26 : 자동차사이즈를 입력받아 저장된 금액과 날짜를 곱해 결제 금액을 알려주는 sql 작성완료.                                                                                                 
 insert into rent values(rent_rentcode_seq.nextval,
                         3 * (select paymoney from pay where carsize = 'small'),
-                        3,sysdate+3,(select carcode from car where carnumber = 4444),
+                        3,sysdate+3,(select carcode from car where carnumber = 1111),
                         (select membercode from member where carreg = '3'),
                         1
                         );
@@ -96,13 +96,11 @@ insert into rent values(rent_rentcode_seq.nextval,
 -- equi 조인을 이용한 고객 id로 현재 고객이 대여하고 있는 정보를 나타내는 sql문                         
 select r.rentcode, c.carnumber, c.carname, c.carsize, m.id, m.name, m.carreg, r.pay,r.rentperiod,r.rent_date 
 from car c, member m, rent r 
-where c.carcode = r.carcode and m.membercode = r.membercode and m.id = 'member';
+where c.carcode = r.carcode and m.membercode = r.membercode;
 
-update member set pw = '1111', name = '박지성', email = 'member3@naver.com' , address = 'busan' where id = 'member3';
-update car set rentck = 0 where rentck != 0 and carsize = 'small' and carcode = 2; 
-select * from car;
-update car set rentck = 0;
 
+
+select * from rent;
 --member 시퀀스 생성
 CREATE SEQUENCE member_membercode_SEQ
 INCREMENT BY 1
