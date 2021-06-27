@@ -138,7 +138,7 @@ public class MemberManage {
 			System.out.println("해당 멤버의 정보가 없습니다.");
 		}
 	}
-
+	//test
 	// 사용자의 현재 대여 정보 출력
 	public void currInfo() {
 		System.out.println("이용자의 렌트 현황을 출력합니다.");
