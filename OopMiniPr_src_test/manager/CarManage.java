@@ -27,7 +27,7 @@ public class CarManage {
 			System.out.println("------------------------------------------------------------------");
 
 			for (Car car : list) {
-				System.out.printf("%s \t %s \t %s \t %d \t %d \t %s \n", 
+				System.out.printf("%s \t %s \t %s \t %d \t %d \t %s    \n", 
 						car.getCarnumber(), 
 						car.getCarname(),
 						car.getCarsize(),
@@ -42,7 +42,7 @@ public class CarManage {
 	public void addCar() {
 
 			System.out.println("새로운 차량을 등록합니다.");
-			System.out.println("차번호 차이름 차크기 탑승인원 연식 연료  형식으로 입력해주세요.");
+			System.out.println("차번호 차이름 차종류 탑승인원 연식 연료  형식으로 입력해주세요.");
 			System.out.println("예시) 123456 sonata middle 5 2020 휘발유 ");
 			String inputData = scan.nextLine();
 			String[] carData = inputData.split(" ");
@@ -85,13 +85,13 @@ public class CarManage {
 	
 	//차량 대여
 	public void rentCar() {		
-			System.out.println("대여할 차량번호 입력");
+			System.out.println("차량번호를 한번더 입력해주세요.");
 			String carnumber = scan.nextLine();
 			
 			int result = dao.checkRentCar(carnumber);
 			
 			if(result > 0)	{
-				System.out.println("대여를 시작합니다.");				
+				System.out.println("대여를 완료하였습니다.");				
 			}else {
 				System.out.println("수정 실패");
 			}
@@ -121,7 +121,6 @@ public class CarManage {
 			int result = dao.addRentCar(period,carsize,carnumber,carreg);
 						
 				if(result > 0) {
-					System.out.println("대여가 완료 되었습니다.");
 					rentCar();
 					break;
 				}else {
@@ -133,40 +132,43 @@ public class CarManage {
 
 	// 자동차 반납
 	public	void returnCar() {
-			
+		
+		
 			System.out.println("반납할 차량번호 입력");
 			String carnumber = scan.nextLine();
 					
 				int result = dao.checkReturnCar(carnumber);
 		
 				if(result > 0) {
-					System.out.println("반납이 완료되었습니다.");
+					System.out.println("반납되었습니다.");
 				} else  {
 					System.out.println("반납실패!!");
-				}				
-	}
+				}
+			}
 	//렌트 현황 삭제
-	public void returnCar2() {
-	
+	public void returnCar2() {	
 		while(true) {
-		System.out.println("뒤로가기 하시려면 0번을 눌러주세요./ 계속 진행은 enter키");
-		String out = scan.nextLine();
-		if(out.equals("0")) {
-			break;
-		}else {		
-		rentList();
-		System.out.println("회원아이디를 입력하세요");
-		String id = scan.nextLine();
-		int result = dao.deleteRentInfo(id);
+			System.out.println("뒤로가기 하시려면 0번을 눌러주세요./ 계속 진행은 enter키");
+			String out = scan.nextLine();
+			if(out.equals("0")) {
+				break;
+			}else {
+				rentList();
+				System.out.println("회원아이디를 입력하세요");
+				String id = scan.nextLine();
+				int result = dao.deleteRentInfo(id);
 		
-		if(result > 0) {
-			returnCar() ;
-		}else {
-			System.out.println("반납 실패");
+				if(result > 0) {
+					returnCar();
+					break;
+				}else {
+					System.out.println("반납 실패");
 			}
 		}
-	}		
+	}
 }
+		
+
 	// 렌트 중인 차량 목록		
 	public	void rentList() {
 			

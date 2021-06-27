@@ -54,7 +54,7 @@ public class UI {
 			while (true) {
 
 				System.out.println("메뉴 선택을 해주세요.");
-				System.out.println("1.대여 2.반납 3.현재대여정보 4.전체차량정보 5.결제 정보 6.로그아웃");
+				System.out.println("1.대여 2.반납 3.현재대여정보 4.전체차량정보 5.로그아웃");
 				num = Integer.parseInt(getUserInput());
 				switch (num) {
 
@@ -64,7 +64,7 @@ public class UI {
 					break;
 				case 2:
 					// 반납 메서드
-					cm.returnCar();
+					cm.returnCar2();
 					break;
 				case 3:
 					// 현재 이용 정보
@@ -76,9 +76,6 @@ public class UI {
 					cm.carList();
 					break;
 				case 5:
-					// 결제 정보
-					break;
-				case 6:
 					if (mm.Logout() == true) {
 						start();
 					} else {
@@ -95,7 +92,6 @@ public class UI {
 	public void menuNoneMM() {
 		System.out.println("회원가입을 시작합니다.");
 		mm.addMember();
-		System.out.println("회원가입이 완료되었습니다.");
 		start();
 	}
 
