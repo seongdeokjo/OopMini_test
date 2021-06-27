@@ -12,6 +12,7 @@ import car.*;
 import member.*;
 
 public class ManagerDao {
+	//db접속을 위한 변수 선언 
 	private static final String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 	private static final String user = "hr";
 	private static final String pw = "tiger";
@@ -375,7 +376,7 @@ public class ManagerDao {
 		// 전달받은 Car객체의 데이터로 테이블에 저장 -> 결과값 반환
 		PreparedStatement pstmt = null;
 		try {
-			String sql = "insert into rent values(rent_rentcode_seq.nextval,? * (select paymoney from pay where carsize = ?),?,sysdate+?,(select carcode from car where carnumber = ?),(select membercode from member where carreg = ?),1)"; //
+			String sql = "insert into rent values(rent_rentcode_seq.nextval,? * (select paymoney from pay where carsize = ?) as totalprice ,?,sysdate+?,(select carcode from car where carnumber = ?),(select membercode from member where carreg = ?),1)"; //
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, period);

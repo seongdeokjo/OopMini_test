@@ -76,7 +76,7 @@ public class UI {
 					cm.carList();
 					break;
 				case 5:
-					if (mm.Logout() == true) {
+					if (mm.Logout() == false) {
 						start();
 					} else {
 						break;
