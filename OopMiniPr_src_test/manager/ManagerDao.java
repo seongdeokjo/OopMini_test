@@ -568,6 +568,7 @@ public class ManagerDao {
 						+ rs.getString(4) + "\t" + rs.getString(5) + "\t" + rs.getString(6) + "\t" + rs.getString(7)
 						+ "\t" + rs.getInt(8) + "\t" + rs.getInt(9) + "\t" + rs.getString(10));
 				System.out.println("----------------------------------------------------------------------------------------------");
+			
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
