@@ -72,9 +72,9 @@ public class CarManage {
 			System.out.println("차량의 삭제를 시작합니다.");
 			carList();
 			System.out.println("차량 번호로 입력하세요.");
-			int carreg = Integer.parseInt(scan.nextLine());
+			int carnumber = Integer.parseInt(scan.nextLine());
 
-			int result = dao.deleteCar( carreg);
+			int result = dao.deleteCar(carnumber);
 
 			if (result > 0) {
 				System.out.println("차량이 삭제되었습니다.");
@@ -93,7 +93,7 @@ public class CarManage {
 			if(result > 0)	{
 				System.out.println("대여를 완료하였습니다.");				
 			}else {
-				System.out.println("수정 실패");
+				System.out.println("대여 실패");
 			}
 	}
 	// 자동차 대여

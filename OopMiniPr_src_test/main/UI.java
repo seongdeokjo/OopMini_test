@@ -76,7 +76,7 @@ public class UI {
 					cm.carList();
 					break;
 				case 5:
-					if (mm.Logout() == true) {
+					if (mm.Logout() == false) {
 						start();
 					} else {
 						break;
@@ -101,7 +101,6 @@ public class UI {
 		System.out.println("관리자모드로 접속합니다.");
 
 		int num = 0;
-//		if (mm.managerLogin() == true) {
 			if (mm.managerLogin() == true) {
 			while (true) {
 
@@ -128,7 +127,7 @@ public class UI {
 				// 관리자 로그아웃
 				case 5:
 					// 로그인 상태일 경우
-					if (mm.Logout() == true) {
+					if (mm.Logout() == false) {
 						start();
 					} else {
 						break;
@@ -142,7 +141,7 @@ public class UI {
 			menuManager();
 		}
 	}
-
+	
 	public static String getUserInput() {
 		Scanner scan = new Scanner(System.in);
 		String input = scan.nextLine();
