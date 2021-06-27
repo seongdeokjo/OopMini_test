@@ -105,15 +105,15 @@ public class MemberManage {
 		String answer = scan.nextLine();
 		switch (answer) {
 		case "yes":
-			ck = true;
+			ck = false;
 			System.out.println("로그아웃 되었습니다.");
 			break;
 		case "no":
-			ck = false;
+			ck = true;
 			break;
 		default:
 			System.out.println("yes or no만 입력하세요");
-			ck = false;
+			ck = true;
 			break;
 		}
 		return ck;
