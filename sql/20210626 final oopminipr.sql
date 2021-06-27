@@ -98,7 +98,10 @@ select r.rentcode, c.carnumber, c.carname, c.carsize, m.id, m.name, m.carreg, r.
 from car c, member m, rent r 
 where c.carcode = r.carcode and m.membercode = r.membercode;
 
-
+update member set pw = '1111', name = '박지성', email = 'member3@naver.com' , address = 'busan' where id = 'member3';
+update car set rentck = 0 where rentck != 0 and carsize = 'small' and carcode = 2; 
+select * from car;
+update car set rentck = 0;
 
 select * from rent;
 --member 시퀀스 생성
