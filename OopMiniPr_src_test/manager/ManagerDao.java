@@ -344,7 +344,7 @@ public class ManagerDao {
 		// 전달받은 Car객체의 데이터로 테이블에 저장 -> 결과값 반환
 		PreparedStatement pstmt = null;
 		try {
-			String sql = "update car set rentck=1 where rentck !=1 and carnumber = ? ";
+			String sql = "update car set rentck=1 where rentck !=1 and carnumber = ?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, carnumber);

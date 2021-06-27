@@ -25,7 +25,6 @@ public class MemberManage {
 
 	// 회원 가입 메서드
 	public void addMember() {
-		System.out.println("회원가입을 시작합니다.");
 		System.out.println("아이디 비밀번호 이름 운전면허 이메일 주소 형식으로 입력해주세요.");
 		System.out.println("에시) hi 1234 홍길동 111111 t@naver.com seoul");
 		String inputData = scan.nextLine();
@@ -57,11 +56,11 @@ public class MemberManage {
 		List<Member> list = dao.getMemberList();
 		System.out.println("회원의 리스트를 출력합니다.");
 		System.out.println("---------------------------------------------------------------------");
-		System.out.println("membercode \t id \t name \t carreg \t email \t address");
+		System.out.println("멤버번호 \t id \t 이름 \t 면허번호 \t email \t 주소");
 		System.out.println("---------------------------------------------------------------------");
 
 		for (Member member : list) {
-			System.out.printf("%d \t %s \t %s \t %s \t %s \t %s \n ",
+			System.out.printf("%d \t %s \t %s \t %s \t %s \t %s  \n ",
 					member.getMembercode(), 
 					member.getId(),
 					member.getName(), 
@@ -139,7 +138,7 @@ public class MemberManage {
 		}
 	}
 	//test2
-	//adasasdasdad
+	
 	// 사용자의 현재 대여 정보 출력
 	public void currInfo() {
 		System.out.println("이용자의 렌트 현황을 출력합니다.");
