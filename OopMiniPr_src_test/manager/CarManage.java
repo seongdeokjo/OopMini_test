@@ -72,6 +72,8 @@ public class CarManage {
 			System.out.println("차량의 삭제를 시작합니다.");
 			carList();
 			System.out.println("차량 번호로 입력하세요.");
+			
+			try {
 			int carnumber = Integer.parseInt(scan.nextLine());
 
 			int result = dao.deleteCar(carnumber);
@@ -80,6 +82,9 @@ public class CarManage {
 				System.out.println("차량이 삭제되었습니다.");
 			} else {
 				System.out.println("차량의 정보가 없습니다.");
+			}
+			}catch(NumberFormatException e) {
+				System.out.println("올바른 숫자를 입력하세요.");
 			}
 	}
 	
