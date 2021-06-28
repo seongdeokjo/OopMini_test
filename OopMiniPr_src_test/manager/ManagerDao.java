@@ -413,6 +413,7 @@ public class ManagerDao {
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, carnumber);
+			
 
 			result = pstmt.executeUpdate();
 

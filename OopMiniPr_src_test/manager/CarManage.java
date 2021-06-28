@@ -142,7 +142,7 @@ public class CarManage {
 			String carnumber = scan.nextLine();
 					
 				int result = dao.checkReturnCar(carnumber);
-		
+				
 				if(result > 0) {
 					System.out.println("반납되었습니다.");
 				} else  {
