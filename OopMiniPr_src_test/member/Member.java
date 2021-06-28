@@ -1,6 +1,6 @@
 package member;
 
-public class Member  { //implements Serializable 내일 확인후 지울지 말지
+public class Member  { 
 	
 	private int membercode;
 	private String id;
@@ -83,11 +83,5 @@ public class Member  { //implements Serializable 내일 확인후 지울지 말�
 	public String toString() {
 		return "Member [membercode=" + membercode + ", id=" + id + ", pw=" + pw + ", name=" + name + ", carreg=" + carreg + ", email="
 				+ email + ", address=" + address + "]";
-	}
-	
-	
-	
-	
-	
-	
+	}	
 }
