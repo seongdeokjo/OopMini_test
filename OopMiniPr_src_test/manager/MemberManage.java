@@ -30,15 +30,8 @@ public class MemberManage {
 		String inputData = scan.nextLine();
 		String[] memberdata = inputData.split(" ");
 
-		Member member = new Member(
-				0, 
-				memberdata[0], 
-				memberdata[1], 
-				memberdata[2], 
-				memberdata[3], 
-				memberdata[4],
-				memberdata[5]
-						);
+		Member member = new Member(0, memberdata[0], memberdata[1], memberdata[2], memberdata[3], memberdata[4],
+				memberdata[5]);
 
 		int result = dao.insertMember(member);
 
@@ -60,13 +53,8 @@ public class MemberManage {
 		System.out.println("---------------------------------------------------------------------");
 
 		for (Member member : list) {
-			System.out.printf("%d \t %s \t %s \t %s \t %s \t %s  \n ",
-					member.getMembercode(), 
-					member.getId(),
-					member.getName(), 
-					member.getCarreg(), 
-					member.getEmail(),
-					member.getAddress());
+			System.out.printf("%d \t %s \t %s \t %s \t %s \t %s  \n ", member.getMembercode(), member.getId(),
+					member.getName(), member.getCarreg(), member.getEmail(), member.getAddress());
 		}
 		System.out.println("---------------------------------------------------------------------");
 	}
@@ -87,17 +75,16 @@ public class MemberManage {
 
 	// manager 로그인 메서드
 	public boolean managerLogin() {
-		boolean result = false;
 		System.out.println("아이디를 입력하세요.");
 		String id = scan.nextLine();
 		System.out.println("비밀번호를 입력하세요.");
 		String pw = scan.nextLine();
 		if (dao.managerLogin(id, pw) > 0) {
-			result = true;
+			ck = true;
 		} else {
-			result = false;
+			ck = false;
 		}
-		return result;
+		return ck;
 	}
 
 	public boolean Logout() {
@@ -137,7 +124,7 @@ public class MemberManage {
 			System.out.println("해당 멤버의 정보가 없습니다.");
 		}
 	}
-	
+
 	// 사용자의 현재 대여 정보 출력
 	public void currInfo() {
 		System.out.println("이용자의 렌트 현황을 출력합니다.");
