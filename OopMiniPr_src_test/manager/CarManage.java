@@ -138,7 +138,6 @@ public class CarManage {
 	// 자동차 반납
 	public	void returnCar() {
 		
-		
 			System.out.println("반납할 차량번호 입력");
 			String carnumber = scan.nextLine();
 					
