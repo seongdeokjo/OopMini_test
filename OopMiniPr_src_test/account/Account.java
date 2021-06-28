@@ -112,7 +112,7 @@ public static void main(String[] args) throws Exception {
 			ps=con.prepareStatement(sql);
 			ps.setString(1, ano);
 			rs=ps.executeQuery();
-			
+			//test
 			if(rs.next()) {
 				aname=rs.getString("aname");
 				balance=rs.getInt("balance");
