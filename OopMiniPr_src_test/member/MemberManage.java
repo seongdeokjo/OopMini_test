@@ -8,7 +8,7 @@ import car.*;
 public class MemberManage {
 	// 메소드
 	// 회원 정보 관리
-	// 25일 : 회원 정보 수정
+	//29일 : 회원 정보 수정(edit), 해당 고객의  본인의 정보 삭제, 
 	private MemberDao dao;
 	CarManage cm;
 	private Scanner scan;
