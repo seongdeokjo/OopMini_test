@@ -55,7 +55,7 @@ mid varchar2(20) not null,
 mpw varchar2(20) not null
 );
 --manager 데이터 입력
-insert into manager values(1,'admin','1234');
+insert into manager values(MANAGER_MANAGERCODE_SEQ.nextval,'admin','1234');
 
 --rent table 생성 
 create table rent(
@@ -127,6 +127,8 @@ increment by 1;
 --pay 시퀀스 삭제
 drop sequence pay_paycode_seq;
 
+--manager 시퀀스 생성
+create sequence manager_managercode_seq;
 
 --커밋
 commit;

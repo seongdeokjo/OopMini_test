@@ -7,11 +7,12 @@ package main;
 import java.util.Scanner;
 
 import manager.*;
-
+import member.*;
+import car.*;
 public class UI {
-	MemberManage mm = new MemberManage(ManagerDao.getInstance());
-	CarManage cm = new CarManage(ManagerDao.getInstance());
-
+	ManagerManage mm = new ManagerManage(ManagerDao.getInstance());
+	CarManage cm = new CarManage(CarDao.getInstance());
+	MemberManage mbm = new MemberManage(MemberDao.getInstance());
 	// 전체 메뉴
 	public void start() {
 
@@ -56,7 +57,7 @@ public class UI {
 		int num = 0;
 		System.out.println("회원 로그인을 진행합니다.");
 		// 로그인
-		if (mm.memberLogin() == true) {
+		if (mbm.memberLogin() == true) {
 			while (true) {
 				try {
 					System.out.println("메뉴 선택을 해주세요.");
@@ -75,7 +76,7 @@ public class UI {
 						break;
 					case 3:
 						// 현재 이용 정보
-						mm.currInfo();
+						mbm.currInfo();
 						break;
 					case 4:
 						// 차량 이용 현황 메서드
@@ -101,7 +102,7 @@ public class UI {
 	// 2번 비회원 선택시
 	public void menuNoneMM() {
 		System.out.println("회원가입을 시작합니다.");
-		mm.addMember();
+		mbm.addMember();
 		start();
 	}
 
@@ -120,7 +121,7 @@ public class UI {
 					switch (num) {
 					// 회원 리스트
 					case 1:
-						mm.memberList();
+						mbm.memberList();
 						break;
 					// 회원 삭제
 					case 2:

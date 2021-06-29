@@ -1,4 +1,4 @@
-package manager;
+package car;
 import java.util.List;
 import java.util.Scanner;
 
@@ -6,10 +6,10 @@ import car.*;
 
 public class CarManage {
 
-	private ManagerDao dao;
+	private CarDao cdao;
 	private Scanner scan;
-	public CarManage(ManagerDao dao) {
-		this.dao = dao;
+	public CarManage(CarDao cdao) {
+		this.cdao = cdao;
 		scan = new Scanner(System.in);
 	}
 	//2021.06.24 
@@ -19,7 +19,7 @@ public class CarManage {
 	
 	// 차량 정보 리스트 출력
 	public void carList() {
-			List<Car> list = dao.getCarList();
+			List<Car> list = cdao.getCarList();
 
 			System.out.println("자동차 정보 리스트");
 			System.out.println("------------------------------------------------------------------");
@@ -57,7 +57,7 @@ public class CarManage {
 					carData[5],
 					0);
 							
-			int result = dao.insertCar(car);
+			int result = cdao.insertCar(car);
 
 			if (result > 0) {
 				System.out.println("새로운 차량이 등록되었습니다.");
@@ -76,7 +76,7 @@ public class CarManage {
 			try {
 			int carnumber = Integer.parseInt(scan.nextLine());
 
-			int result = dao.deleteCar(carnumber);
+			int result = cdao.deleteCar(carnumber);
 
 			if (result > 0) {
 				System.out.println("차량이 삭제되었습니다.");
@@ -93,7 +93,7 @@ public class CarManage {
 			System.out.println("차량번호를 한번더 입력해주세요.");
 			String carnumber = scan.nextLine();
 			
-			int result = dao.checkRentCar(carnumber);
+			int result = cdao.checkRentCar(carnumber);
 			
 			if(result > 0)	{
 				System.out.println("대여를 완료하였습니다.");				
@@ -123,7 +123,7 @@ public class CarManage {
 			//2021 06.24
 		//예외 처리 추가 1이외에 다른 데이터가 들어올시 예외처리 
 		//문제점 : 차번호 입력시 db에 없는 값이 들어와도 대여완료가 출력		
-			int result = dao.addRentCar(period,carsize,carnumber,carreg);
+			int result = cdao.addRentCar(period,carsize,carnumber,carreg);
 						
 				if(result > 0) {
 					rentCar();
@@ -141,7 +141,7 @@ public class CarManage {
 			System.out.println("반납할 차량번호 입력");
 			String carnumber = scan.nextLine();
 					
-				int result = dao.checkReturnCar(carnumber);
+				int result = cdao.checkReturnCar(carnumber);
 				
 				if(result > 0) {
 					System.out.println("반납되었습니다.");
@@ -160,7 +160,7 @@ public class CarManage {
 				rentList();
 				System.out.println("회원아이디를 입력하세요");
 				String id = scan.nextLine();
-				int result = dao.deleteRentInfo(id);
+				int result = cdao.deleteRentInfo(id);
 		
 				if(result > 0) {
 					returnCar();
@@ -176,7 +176,7 @@ public class CarManage {
 	// 렌트 중인 차량 목록		
 	public	void rentList() {
 			
-			List<Car> Clist = dao.rentList();
+			List<Car> Clist = cdao.rentList();
 			
 			System.out.println("렌트 중인 차량 목록");
 			System.out.println("---------------------------------------------------");
@@ -200,7 +200,7 @@ public class CarManage {
 	// 이용 가능 차량 목록
 	public	void availableList() {
 			
-			List<Car> Clist = dao.availableList();
+			List<Car> Clist = cdao.availableList();
 			
 			System.out.println("대여 가능 차량 목록");
 			System.out.println("--------------------------------------------------");
