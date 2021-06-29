@@ -1,7 +1,7 @@
 package member;
 
 public class Member  { 
-	
+	// 29일 : (미정) -> account 칼럼 추가??? -> 결제 기능을 위한 변수  
 	private int membercode;
 	private String id;
 	private String pw;
