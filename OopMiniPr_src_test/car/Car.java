@@ -25,8 +25,6 @@ public class Car {
 
 	}
 
-
-
 	public Car(String carnumber, String carname, String carsize, int carseat, int caryear, String fuel) {
 		this.carnumber = carnumber;
 		this.carname = carname;
@@ -35,8 +33,6 @@ public class Car {
 		this.caryear = caryear;
 		this.fuel = fuel;
 	}
-
-
 
 	public int getCarcode() {
 		return carcode;
