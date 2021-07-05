@@ -11,6 +11,12 @@ select * from rent;
 select * from member;
 select * from pay;
 
+--문제점 : 결제를 위해 렌트테이블의 데이터가 입력이되어야 pay를 가져와 잔고에서 돈을 인출 해야한다.
+-- 현재 진행 과정 : 대여 -> 렌트 데이터 추가 -> 차량 대여여부 변경 -> 결제 ??? -> 이런 서비스는 없습니다. 
+update member
+set balancce = balance - pay() where account = '1111111-11111';
+
+
 --member 데이터 입력
 insert into member values
 (MEMBER_MEMBERCODE_SEQ.nextval, 'member', '123456', '손흥민', '1111', 'member@naver.com', 'SEOUL', '1111111-11111', 0);

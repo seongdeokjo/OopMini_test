@@ -89,7 +89,6 @@ public class MemberManage {
 		return ck;
 	}
 
-
 	// 사용자의 현재 대여 정보 출력
 	public void currInfo() {
 		System.out.println("이용자의 렌트 현황을 출력합니다.");
