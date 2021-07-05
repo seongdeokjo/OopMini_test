@@ -19,11 +19,13 @@ pw varchar2(20) not null,
 name varchar2(20) not null,
 carreg varchar2(14) constraint member_carrg_uk unique not null,
 email varchar2(40) not null,
-address varchar2(40) not null
+address varchar2(40) not null,
+account varchar2(30) not null, --계좌
+balance number(6) not null  --잔고
 );
 --member 데이터 입력
 insert into member values
-(MEMBER_MEMBERCODE_SEQ.nextval, 'member', '123456', '손흥민', '1111', 'member@naver.com', 'SEOUL');
+(MEMBER_MEMBERCODE_SEQ.nextval, 'member', '123456', '손흥민', '1111', 'member@naver.com', 'SEOUL', '1111111-11111', 0);
 insert into member values
 (MEMBER_MEMBERCODE_SEQ.nextval, 'member1', '123456', '박지성', '2222', 'member1@naver.com', 'DAEJEON');
 insert into member values
