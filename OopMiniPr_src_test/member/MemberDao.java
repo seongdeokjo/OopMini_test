@@ -74,20 +74,53 @@ public class MemberDao {
 			PreparedStatement pstmt = null;
 			int result = 0;
 			try {
-				String sql = "insert into member values(MEMBER_membercode_SEQ.nextval, ?, ?, ?, ?, ?, ?)";
+				String sql = "insert into member values(MEMBER_membercode_SEQ.nextval, ?, ?, ?, ?, ?, ?,?,0)";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, member.getId());
+				pstmt.setString(1, member.getId());		
 				pstmt.setString(2, member.getPw());
 				pstmt.setString(3, member.getName());
 				pstmt.setString(4, member.getCarreg());
 				pstmt.setString(5, member.getEmail());
 				pstmt.setString(6, member.getAddress());
-
+				pstmt.setString(7, member.getAccount());
 				result = pstmt.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
 				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return result;
+		}
+		// 21.07.07 id 중복체크 메서드 기능 수정중 
+		// 멤버의 중복 id 체크
+		public int checkMemberId(String id) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				String sql = "select * from member where id = ?"+id;
+				pstmt = conn.prepareStatement(sql);
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				if(rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				if(pstmt != null) {
 					try {
 						pstmt.close();
 					} catch (SQLException e) {
@@ -126,7 +159,9 @@ public class MemberDao {
 							rs.getString(4), 
 							rs.getString(5),
 							rs.getString(6), 
-							rs.getString(7)
+							rs.getString(7),
+							rs.getString(8),
+							rs.getInt(9)
 							));
 				}
 			} catch (SQLException e) {

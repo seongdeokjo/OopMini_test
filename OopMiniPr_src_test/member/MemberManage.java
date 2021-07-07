@@ -21,18 +21,19 @@ public class MemberManage {
 
 
 	// 회원 가입 메서드
-	public void addMember() {
+	public void addMember(){
 		System.out.println("아이디 비밀번호 이름 운전면허 이메일 주소 형식으로 입력해주세요.");
 		System.out.println("에시) hi 1234 홍길동 111111 t@naver.com seoul");
 		String inputData = scan.nextLine();
 		String[] memberdata = inputData.split(" ");
-
+		
 		Member member = new Member(0, memberdata[0], memberdata[1], memberdata[2], memberdata[3], memberdata[4],
-				memberdata[5]);
-
+				memberdata[5],memberdata[6],0);
+		
 		int result = dao.insertMember(member);
-
+		
 		if (result > 0) {
+//			if(dao.checkMemberId(inputData))
 			System.out.println("회원가입이 완료되었습니다.");
 		} else {
 			System.out.println("입력 실패!!!!");

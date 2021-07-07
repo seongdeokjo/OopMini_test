@@ -16,7 +16,7 @@ carreg varchar2(14) constraint member_carrg_uk unique not null,
 email varchar2(40) not null,
 address varchar2(40) not null,
 account varchar2(30) not null, --계좌
-balance number(6) not null  --잔고
+balance number(6)   --잔고
 );
 
 --car 테이블 생성

@@ -39,7 +39,7 @@ public class Member {
 		this.balance = balance;
 	}
 
-	public Member(int membercode, String id, String pw, String name, String carreg, String email, String address) {
+	public Member(int membercode, String id, String pw, String name, String carreg, String email, String address,String account, int balance) {
 		this.membercode = membercode;
 		this.id = id;
 		this.pw = pw;
@@ -47,6 +47,8 @@ public class Member {
 		this.carreg = carreg;
 		this.email = email;
 		this.address = address;
+		this.account = account;
+		this.balance = balance;
 	}
 
 	public int getMembercode() {
