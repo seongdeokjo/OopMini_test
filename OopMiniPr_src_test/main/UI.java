@@ -101,7 +101,6 @@ public class UI {
 
 	// 2번 비회원 선택시
 	public void menuNoneMM() {
-		System.out.println("회원가입을 시작합니다.");
 		mbm.addMember();
 		start();
 	}

@@ -105,8 +105,9 @@ public class MemberDao {
 			ResultSet rs = null;
 			
 			try {
-				String sql = "select * from member where id = ?"+id;
+				String sql = "select * from member where id = ?";
 				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
 				
 				result = pstmt.executeUpdate();
 				
