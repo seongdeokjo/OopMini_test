@@ -185,9 +185,25 @@ public class MemberDao {
 			}
 			return list;
 		}
-
-
-
+		//결제를 위해 회원의 id를 찾는 메소드
+		public int accountCheck(String id) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				String sql = "select id,name,account,balance from member where id = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
+			return result;
+		}
 		// 현재 대여 중인 고객의 렌트 정보 출력
 		public void currRentInfo(String id) {
 
