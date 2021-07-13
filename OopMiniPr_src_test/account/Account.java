@@ -129,7 +129,7 @@ public static void main(String[] args) throws Exception {
 				
 				System.out.println("결과: 출금이 성공되었습니다.");
 			}else {
-				System.out.println("계좌를 잘못 입력하셨습니다.");
+				System.out.println("계좌를 잘못 입력하셨습니다."); 
 			}
 			break;
 		case 5://종료
