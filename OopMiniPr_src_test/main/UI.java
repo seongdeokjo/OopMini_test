@@ -61,7 +61,7 @@ public class UI {
 			while (true) {
 				try {
 					System.out.println("메뉴 선택을 해주세요.");
-					System.out.println("1.대여 2.반납 3.현재대여정보 4.전체차량정보 5.로그아웃");
+					System.out.println("1.대여 2.반납 3.현재대여정보 4.전체차량정보 5.계좌찾기 6.로그아웃");
 
 					num = Integer.parseInt(getUserInput());
 					switch (num) {
@@ -84,6 +84,10 @@ public class UI {
 						cm.carList();
 						break;
 					case 5:
+						//2021-07-13 계좌 정보 찾는 메서드
+						mbm.accountId();
+						break;
+					case 6:
 						if (mm.Logout() == false) {
 							start();
 						} else {

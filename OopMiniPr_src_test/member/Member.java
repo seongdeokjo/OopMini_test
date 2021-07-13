@@ -50,6 +50,13 @@ public class Member {
 		this.account = account;
 		this.balance = balance;
 	}
+	//계좌를 찾기위한 생성자
+	public Member(String id, String name, String account, int balance) {
+		this.id = id;
+		this.name = name;
+		this.account = account;
+		this.balance = balance;
+	}
 
 	public int getMembercode() {
 		return membercode;
