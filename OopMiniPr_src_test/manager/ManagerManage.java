@@ -18,10 +18,10 @@ public class ManagerManage {
 		scan = new Scanner(System.in);
 	}
 
-	public void endDb() {
-		System.out.println("db 접속을 종료하고 프로그램을 종료합니다.");
-		dao.close();
-	}
+//	public void endDb() {
+//		System.out.println("db 접속을 종료하고 프로그램을 종료합니다.");
+//		dao.close();
+//	}
 
 
 

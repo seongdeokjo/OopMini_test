@@ -38,7 +38,7 @@ public class UI {
 					break;
 				// 4번은 db접속 해제후 프로그램 강제 종료
 				case 4:
-					mm.endDb();
+//					mm.endDb();
 					System.exit(0);
 				}
 			} catch (NumberFormatException e) {

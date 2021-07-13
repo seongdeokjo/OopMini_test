@@ -1,34 +1,24 @@
 package member;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-//import util.JDBCConnectiong;
+import util.*;
 
-public class MemberDao {
-
-	// db접속을 위한 변수 선언
-	private static final String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
-	private static final String user = "hr";
-	private static final String pw = "tiger";
-	private Connection conn;
+public class MemberDao extends JDBCFactory {
 
 	// 1.외부 클래스 또는 인스턴스에서 해당 클래스로 인스턴스를 생성하지 못하도록 처리
 	private MemberDao() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn = DriverManager.getConnection(jdbcUrl, user, pw);
+			conn = JDBCFactory.connecting();
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버를 찾을 수 없습니다.");
-			e.printStackTrace();
-		} catch (SQLException e) {
-			System.out.println("Connection을 연결할 수 없습니다.");
 			e.printStackTrace();
 		}
 	}
@@ -89,13 +79,7 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			JDBCFactory.close(pstmt);
 		}
 		return result;
 	}
@@ -117,20 +101,8 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			JDBCFactory.close(rs);
+			JDBCFactory.close(pstmt);
 		}
 		return result;
 	}
@@ -162,20 +134,8 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (stmt != null) {
-				try {
-					stmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			JDBCFactory.close(rs);
+			JDBCFactory.close(stmt);
 		}
 		return list;
 	}
@@ -199,20 +159,8 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			JDBCFactory.close(rs);
+			JDBCFactory.close(pstmt);
 		}
 
 		return list;
@@ -233,20 +181,8 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			JDBCFactory.close(rs);
+			JDBCFactory.close(pstmt);
 		}
 
 		return result;
@@ -278,21 +214,8 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			JDBCFactory.close(rs);
+			JDBCFactory.close(pstmt);
 		}
 	}
 }

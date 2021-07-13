@@ -42,15 +42,15 @@ public class ManagerDao {
 	}
 
 	// 로그아웃시 db와의 연결을 종료하는 메서드
-	public void close() {
-		if (conn != null) {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+//	public void close() {
+//		if (conn != null) {
+//			try {
+//				conn.close();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//	}
 
 
 	// 매니저 로그인
