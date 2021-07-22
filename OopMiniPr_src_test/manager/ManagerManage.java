@@ -5,7 +5,7 @@ import java.util.Scanner;
 import member.*;
 
 public class ManagerManage {
-	MemberManage mbm = new MemberManage(MemberDao.getInstance());
+	MemberManage mbm = new MemberManage();
 	// 메소드
 	// 회원 정보 관리
 	// 25일 : 회원 정보 수정

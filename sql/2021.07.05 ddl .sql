@@ -1,14 +1,14 @@
 
---테이블 삭제
+#테이블 삭제
 drop table rent;
 drop table member;
 drop table car;
 drop table manager;
 
 
---member table 생성
+#member table 생성
 create table member(
-membercode number(4) constraint member_membercode_pk primary key,
+membercode numeric[4] constraint member_membercode_pk primary key,
 id varchar2(20) constraint member_id_uk unique not null,
 pw varchar2(20) not null,
 name varchar2(20) not null,
@@ -19,7 +19,7 @@ account varchar2(30) not null, --계좌
 balance number(6)   --잔고
 );
 
---car 테이블 생성
+#car 테이블 생성
 create table car(
 carcode number(4) constraint car_carcode_pk primary key,
 carnumber varchar2(20) constraint car_cnum_uk unique not null,
@@ -34,14 +34,14 @@ rentck number(1) constraint car_rentck_ck check(rentck between 0 and 1) not null
 -- 0 이면 대여가 가능한 상태임을 나타내고 1이면 대여중임을 나타낸다
 );
 
---manager 테이블 생성
+#manager 테이블 생성
 create table manager(
 managercode number(4) constraint manager_managercode_pk primary key,
 mid varchar2(20) not null,
 mpw varchar2(20) not null
 );
 
---rent table 생성 
+#rent table 생성 
 create table rent(
 rentcode number(4) constraint rent_rentcode_pk primary key,
 pay number(6) not null,

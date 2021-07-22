@@ -12,7 +12,7 @@ import car.*;
 public class UI {
 	ManagerManage mm = new ManagerManage(ManagerDao.getInstance());
 	CarManage cm = new CarManage(CarDao.getInstance());
-	MemberManage mbm = new MemberManage(MemberDao.getInstance());
+	MemberManage mbm = new MemberManage();
 	// 전체 메뉴
 	public void start() {
 

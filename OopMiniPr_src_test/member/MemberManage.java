@@ -1,7 +1,8 @@
 package member;
 
+import java.sql.Connection;
 import java.util.List;
-import java.util.Scanner;
+import util.*;
 
 import manager.*;
 import car.*;
@@ -10,22 +11,20 @@ public class MemberManage {
 	// 메소드
 	// 회원 정보 관리
 	// 29일 : 회원 정보 수정(edit), 해당 고객의 본인의 정보 삭제,
-	private MemberDao dao;
+	private	MemberDao dao = null;
 	CarManage cm;
-	private Scanner scan;
 	static boolean ck = false;
 
-	public MemberManage(MemberDao dao) {
-		this.dao = dao;
-		scan = new Scanner(System.in);
+	public MemberManage() {
 	}
 
 	// 회원 가입 메서드
 	public void addMember() {
+		dao = MemberDao.getInstance();
 		while (true) {
 			System.out.println("회원가입을 시작합니다.");
 			System.out.println("아이디를 입력해주세요.");
-			String id = scan.nextLine();
+			String id = ScannerUtil.getInputString();
 			if (dao.checkMemberId(id) > 0) {
 				System.out.println("id가 중복되었습니다. 다시 입력하세요.");
 				continue;
@@ -37,7 +36,7 @@ public class MemberManage {
 				System.out.println("비밀번호 이름 운전면허 이메일 주소 계좌번호 순으로 입력해주세요.");
 				System.out.println("예) 1234 홍길동 111111 t@naver.com seoul ####-####");
 
-				String inputData = scan.nextLine();
+				String inputData = ScannerUtil.getInputString();
 				String[] memberdata = inputData.split(" ");
 
 				Member member = new Member(0, id, memberdata[0], memberdata[1], memberdata[2], memberdata[3],
@@ -79,11 +78,12 @@ public class MemberManage {
 
 	// member 로그인 메서드
 	public boolean memberLogin() {
+		Connection conn = null;
 		System.out.println("아이디를 입력하세요.");
-		String id = scan.nextLine();
+		String id = ScannerUtil.getInputString();
 		System.out.println("비밀번호를 입력하세요.");
-		String pw = scan.nextLine();
-		if (dao.memberLogin(id, pw) > 0) {
+		String pw = ScannerUtil.getInputString();
+		if (dao.memberLogin(conn,id, pw) > 0) {
 			ck = true;
 		} else {
 			ck = false;
@@ -94,7 +94,7 @@ public class MemberManage {
 	// member 로그아웃 기능
 	public boolean Logout() {
 		System.out.println("로그아웃 하시려면 yes / 돌아가시려면 no를 입력하세요.");
-		String answer = scan.nextLine();
+		String answer = ScannerUtil.getInputString();
 		switch (answer) {
 		case "yes":
 			ck = false;
@@ -115,7 +115,7 @@ public class MemberManage {
 	//id를 입력받아 계좌 및 잔액 찾는 메소드
 	public void accountId() {
 		System.out.println("이용자의 id를 입력해주세요.");
-		String id = scan.nextLine();
+		String id = ScannerUtil.getInputString();
 		List<Member> list = dao.getAccount(id);
 		System.out.println("회원의 리스트를 출력합니다.");
 		System.out.println(
@@ -135,9 +135,9 @@ public class MemberManage {
 	//member 대여비 입금 메소드
 	public void insertDeposit() {
 		System.out.println("계좌 번호를 입력해주세요."); 
-		String account = scan.nextLine();
+		String account = ScannerUtil.getInputString();
 		System.out.println("입금할 금액을 입력해주새요.");
-		int balance = scan.nextInt();
+		int balance = Integer.parseInt(ScannerUtil.getInputString());
 		if(dao.deposit(account, balance)>0) {
 			System.out.println("입금이 완료되었습니다.");
 		}else {
@@ -150,7 +150,7 @@ public class MemberManage {
 	public void currInfo() {
 		System.out.println("이용자의 렌트 현황을 출력합니다.");
 		System.out.println("이용자의 id를 입력해주세요.");
-		String id = scan.nextLine();
+		String id = ScannerUtil.getInputString();
 
 		if (id != null) {
 			System.out.println(id + "의 대여 정보 입니다.");

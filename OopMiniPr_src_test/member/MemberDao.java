@@ -1,5 +1,6 @@
 package member;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,20 +9,10 @@ import java.util.ArrayList;
 
 import util.*;
 
-public class MemberDao extends JDBCFactory {
+public class MemberDao {
 
 	// 1.외부 클래스 또는 인스턴스에서 해당 클래스로 인스턴스를 생성하지 못하도록 처리
-	private MemberDao() {
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn = JDBCFactory.connecting();
-
-		} catch (ClassNotFoundException e) {
-			System.out.println("드라이버를 찾을 수 없습니다.");
-			e.printStackTrace();
-		}
-	}
-
+	private MemberDao() {}
 	static private MemberDao mbDao;
 
 	// 3. 메소드를 통해서 반환 하도록 처리
@@ -31,8 +22,9 @@ public class MemberDao extends JDBCFactory {
 		}
 		return mbDao;
 	}
+	
 
-	public int memberLogin(String id, String Pw) {
+	public int memberLogin(Connection conn,String id, String Pw) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select pw from member where id = ?";
