@@ -23,7 +23,7 @@ public class MemberDao {
 		return mbDao;
 	}
 	
-
+	//로그인 
 	public int memberLogin(Connection conn,String id, String Pw) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -47,13 +47,16 @@ public class MemberDao {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			DbClose.close(rs);
+			DbClose.close(pstmt);
 		}
 		System.out.println("오류");
 		return -2; // db 오류
 	}
 
 	// 멤버 정보 입력
-	int insertMember(Member member) {
+	int insertMember(Connection conn,Member member) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		try {
@@ -70,14 +73,14 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JDBCFactory.close(pstmt);
+			DbClose.close(pstmt);
 		}
 		return result;
 	}
 
 	// 21.07.07 id 중복체크 메서드 기능
 	// 멤버의 중복 id 체크
-	public int checkMemberId(String id) {
+	public int checkMemberId(Connection conn,String id) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -92,14 +95,14 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JDBCFactory.close(rs);
-			JDBCFactory.close(pstmt);
+			DbClose.close(rs);
+			DbClose.close(pstmt);
 		}
 		return result;
 	}
 
 	// 멤버의 정보 조회
-	ArrayList<Member> getMemberList() {
+	ArrayList<Member> getMemberList(Connection conn) {
 		ArrayList<Member> list = null;
 
 		// 데이터 베이스의 member 테이블 이용 select 결과를 ->list 에 저장
@@ -125,14 +128,14 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JDBCFactory.close(rs);
-			JDBCFactory.close(stmt);
+			DbClose.close(rs);
+			DbClose.close(stmt);
 		}
 		return list;
 	}
 	//2021-07-13 생성
 	// 결제를 위해 회원의 id를 찾는 메소드
-	public ArrayList<Member> getAccount(String id) {
+	public ArrayList<Member> getAccount(Connection conn,String id) {
 		ArrayList<Member> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -150,15 +153,15 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JDBCFactory.close(rs);
-			JDBCFactory.close(pstmt);
+			DbClose.close(rs);
+			DbClose.close(pstmt);
 		}
 
 		return list;
 	}
 	// 2021-07-13 생성
 	// member id -> 계좌 정보를 출력 -> 계좌 번호,금액을 입력받아 member테이블 update
-	public int deposit(String account, int balance) {
+	public int deposit(Connection conn,String account, int balance) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -172,15 +175,15 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JDBCFactory.close(rs);
-			JDBCFactory.close(pstmt);
+			DbClose.close(rs);
+			DbClose.close(pstmt);
 		}
 
 		return result;
 	}
 
 	// 현재 대여 중인 고객의 렌트 정보 출력
-	public void currRentInfo(String id) {
+	public void currRentInfo(Connection conn,String id) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -205,8 +208,8 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JDBCFactory.close(rs);
-			JDBCFactory.close(pstmt);
+			DbClose.close(rs);
+			DbClose.close(pstmt);
 		}
 	}
 }

@@ -4,28 +4,30 @@ import java.sql.Connection;
 import java.util.List;
 import util.*;
 
-import manager.*;
 import car.*;
 
 public class MemberManage {
 	// 메소드
 	// 회원 정보 관리
 	// 29일 : 회원 정보 수정(edit), 해당 고객의 본인의 정보 삭제,
-	private	MemberDao dao = null;
+	private	MemberDao dao;
+	private Connection conn;
 	CarManage cm;
 	static boolean ck = false;
 
-	public MemberManage() {
+	public MemberManage(MemberDao dao) {
+		this.dao = dao;
 	}
 
 	// 회원 가입 메서드
 	public void addMember() {
-		dao = MemberDao.getInstance();
+		conn = DbConn.getConnecting();
+		
 		while (true) {
 			System.out.println("회원가입을 시작합니다.");
 			System.out.println("아이디를 입력해주세요.");
 			String id = ScannerUtil.getInputString();
-			if (dao.checkMemberId(id) > 0) {
+			if (dao.checkMemberId(conn,id) > 0) {
 				System.out.println("id가 중복되었습니다. 다시 입력하세요.");
 				continue;
 			} else if (id.trim() == "") {
@@ -42,7 +44,7 @@ public class MemberManage {
 				Member member = new Member(0, id, memberdata[0], memberdata[1], memberdata[2], memberdata[3],
 						memberdata[4], memberdata[5], 0);
 
-				int result = dao.insertMember(member);
+				int result = dao.insertMember(conn,member);
 
 				if (result > 0) {
 					System.out.println("회원가입이 완료되었습니다.");
@@ -58,8 +60,8 @@ public class MemberManage {
 	// 회원 리스트 출력 메소드
 	// Dao에서 데이터 리스트를 받고 출력 처리
 	public void memberList() {
-
-		List<Member> list = dao.getMemberList();
+		conn = DbConn.getConnecting();
+		List<Member> list = dao.getMemberList(conn);
 		System.out.println("회원의 리스트를 출력합니다.");
 		System.out.println(
 				"---------------------------------------------------------------------------------------------------------------------------");
@@ -78,7 +80,7 @@ public class MemberManage {
 
 	// member 로그인 메서드
 	public boolean memberLogin() {
-		Connection conn = null;
+		conn = DbConn.getConnecting();
 		System.out.println("아이디를 입력하세요.");
 		String id = ScannerUtil.getInputString();
 		System.out.println("비밀번호를 입력하세요.");
@@ -114,9 +116,10 @@ public class MemberManage {
 	// member의 account 정보 찾기
 	//id를 입력받아 계좌 및 잔액 찾는 메소드
 	public void accountId() {
+		conn = DbConn.getConnecting();
 		System.out.println("이용자의 id를 입력해주세요.");
 		String id = ScannerUtil.getInputString();
-		List<Member> list = dao.getAccount(id);
+		List<Member> list = dao.getAccount(conn,id);
 		System.out.println("회원의 리스트를 출력합니다.");
 		System.out.println(
 				"---------------------------------------------------------------------------------------------------------------------------");
@@ -134,11 +137,12 @@ public class MemberManage {
 	}
 	//member 대여비 입금 메소드
 	public void insertDeposit() {
+		conn = DbConn.getConnecting();
 		System.out.println("계좌 번호를 입력해주세요."); 
 		String account = ScannerUtil.getInputString();
 		System.out.println("입금할 금액을 입력해주새요.");
 		int balance = Integer.parseInt(ScannerUtil.getInputString());
-		if(dao.deposit(account, balance)>0) {
+		if(dao.deposit(conn,account, balance)>0) {
 			System.out.println("입금이 완료되었습니다.");
 		}else {
 			System.out.println("입금실패!!");
@@ -148,13 +152,14 @@ public class MemberManage {
 
 	// 사용자의 현재 대여 정보 출력
 	public void currInfo() {
+		conn = DbConn.getConnecting();
 		System.out.println("이용자의 렌트 현황을 출력합니다.");
 		System.out.println("이용자의 id를 입력해주세요.");
 		String id = ScannerUtil.getInputString();
 
 		if (id != null) {
 			System.out.println(id + "의 대여 정보 입니다.");
-			dao.currRentInfo(id);
+			dao.currRentInfo(conn,id);
 		} else {
 			System.out.println("id를 다시 입력하여주세요.");
 		}
