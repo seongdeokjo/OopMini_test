@@ -129,5 +129,9 @@ public class RentDao {
 		return list;
 	}
 	
+	//반납 -> delete? 아니면 rent 칼럼 추가-> 반납완료(true) 표시 
+	//반납하고 다시 차량 이용가능여부 표시 update-> false
+	//
+	
 	
 }

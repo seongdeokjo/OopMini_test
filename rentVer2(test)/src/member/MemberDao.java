@@ -149,11 +149,5 @@ public class MemberDao {
 		return result;
 	}
 	
-//	public static Timestamp changeDate(ResultSet rs) {
-//		
-//		Timestamp ts = null;
-//		
-//		return ts;
-//	}
 }
 
