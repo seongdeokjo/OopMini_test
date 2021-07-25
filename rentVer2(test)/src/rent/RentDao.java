@@ -1,5 +1,15 @@
 package rent;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Calendar;
+
+import car.Car;
+import util.DbClose;
 
 public class RentDao {
 	private RentDao() {}
@@ -10,4 +20,114 @@ public class RentDao {
 		}
 		return rDao;
 	}
+	
+	//렌트 내역 전체조회 -> 관리자 view
+	public ArrayList<Rent> getRentList(Connection conn){
+		ArrayList<Rent> list = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			stmt = conn.createStatement();
+			String sqlSel = "select * from rent order by idx";
+			rs = stmt.executeQuery(sqlSel);
+			
+			list = new ArrayList<Rent>();
+			
+			while(rs.next()) {
+				list.add(
+						new Rent(
+								rs.getInt(1),
+								rs.getInt(2),
+								rs.getInt(3),
+								rs.getTimestamp(4, Calendar.getInstance()),
+								rs.getTimestamp(5, Calendar.getInstance()),
+								rs.getInt(6),
+								rs.getInt(7)
+								));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DbClose.close(rs);
+			DbClose.close(stmt);
+		}
+		return list;
+	}
+	//렌트 내역 저장
+	public int insertRent(Connection conn,int period,String id,int carNum) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sqlInsert = "insert into rent (totalPrice,rentperiod,returnDate,memberCode,carCode) "
+				+ "values(? * (select carPrice from car where carNumber =?),"
+				+ "?,date_add(now(),interval ? day),(select idx from member where memberId =?),"
+				+ "(select idx from car where carNumber = ?))";
+		try {
+			pstmt = conn.prepareStatement(sqlInsert);
+			pstmt.setInt(1, period);
+			pstmt.setInt(2,carNum);
+			pstmt.setInt(3, period);
+			pstmt.setInt(4, period);
+			pstmt.setString(5, id);
+			pstmt.setInt(6, carNum);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DbClose.close(pstmt);
+		}	
+		return result;
+	}
+	//대여 성공시 차량 대여 불가 표시
+	public int usingCar(Connection conn,int carNum) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		boolean ck = true;
+		String sqlUpdate = "update car set useCar = ? where carNumber =?";
+		try {
+			pstmt = conn.prepareStatement(sqlUpdate);
+			pstmt.setBoolean(1, ck);
+			pstmt.setInt(2, carNum);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DbClose.close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	//대여 가능 차량
+	public ArrayList<Car> availableCar(Connection conn) {
+		ArrayList<Car> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sqlSel = "select carName,carNumber,carPrice from car where useCar =?";
+		try {
+			pstmt = conn.prepareStatement(sqlSel);
+			pstmt.setBoolean(1, false);
+			
+			rs = pstmt.executeQuery();
+			list = new ArrayList<Car>();
+			
+			while(rs.next()) {
+				list.add(new Car(
+						rs.getString(1),
+						rs.getInt(2),
+						rs.getInt(3)
+						));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DbClose.close(pstmt);
+		}
+		return list;
+	}
+	
+	
 }

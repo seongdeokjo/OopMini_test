@@ -1,22 +1,26 @@
 package main;
 
-import car.CarDao;
-import car.CarHandler;
-import member.MemberDao;
-import member.MemberHandler;
+import car.*;
+import member.*;
+import rent.*;
+
 
 public class Menu {
 
 	public static void main(String[] args) {
 		MemberHandler mbH = new MemberHandler(MemberDao.getInstance());
 		CarHandler ch = new CarHandler(CarDao.getInstance());
+		RentHandler rh = new RentHandler(RentDao.getInstance());
+		//rent
+		rh.rentList();
+		rh.rentCar();
 		
 		//car
-		ch.listCar();
+//		ch.listCar();
 //		ch.addCar();
 //		ch.editCar();
 //		ch.removeCar();
-		ch.listCar();
+//		ch.listCar();
 		
 		//member
 //		mbH.memberList();

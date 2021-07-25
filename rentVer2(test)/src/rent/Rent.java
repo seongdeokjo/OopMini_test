@@ -10,6 +10,8 @@ public class Rent {
 	private Timestamp rentDate;
 	private int memberCode;
 	private int carCode;
+	
+
 
 	public Rent(int idx, int totalPrice, int rentPeriod, Timestamp returnDate, Timestamp rentDate, int memberCode,
 			int carCode) {
