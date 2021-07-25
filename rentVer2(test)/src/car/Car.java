@@ -6,6 +6,12 @@ public class Car {
 	private int carNumber;
 	private int carPrice;
 	private boolean useCar;
+	
+	public Car(String carName, int carNumber, int carPrice) {
+		this.carName = carName;
+		this.carNumber = carNumber;
+		this.carPrice = carPrice;
+	}
 
 	public Car(int idx, String carName, int carNumber, int carPrice, boolean useCar) {
 		this.idx = idx;
