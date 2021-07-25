@@ -10,18 +10,35 @@ public class Member {
 	private String memberName;
 	private String regNumber;
 	private String account;
-	private Timestamp regDat;
-		
+	private Timestamp regDate;
+	
+	public Member(String memberId, String memberPw, String account) {
+		super();
+		this.memberId = memberId;
+		this.memberPw = memberPw;
+		this.account = account;
+	}
+
+	//회원가입을 위한 생성자 
+	public Member(String memberId, String memberPw, String memberName, String regNumber, String account) {
+		this.memberId = memberId;
+		this.memberPw = memberPw;
+		this.memberName = memberName;
+		this.regNumber = regNumber;
+		this.account = account;
+	}
+
 	public Member(int idx, String memberId, String memberPw, String memberName, String regNumber, String account,
-			Timestamp regDat) {
+			Timestamp regDate) {
 		this.idx = idx;
 		this.memberId = memberId;
 		this.memberPw = memberPw;
 		this.memberName = memberName;
 		this.regNumber = regNumber;
 		this.account = account;
-		this.regDat = regDat;
+		this.regDate = regDate;
 	}
+	
 
 	public int getIdx() {
 		return idx;
@@ -71,12 +88,12 @@ public class Member {
 		this.account = account;
 	}
 
-	public Timestamp getRegDat() {
-		return regDat;
+	public Timestamp getRegDate() {
+		return regDate;
 	}
 
-	public void setRegDat(Timestamp regDat) {
-		this.regDat = regDat;
+	public void setRegDat(Timestamp regDate) {
+		this.regDate = regDate;
 	}
 
 }
