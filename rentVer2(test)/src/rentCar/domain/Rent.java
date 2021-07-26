@@ -1,4 +1,4 @@
-package rent;
+package rentCar.domain;
 
 import java.sql.Timestamp;
 
@@ -11,7 +11,14 @@ public class Rent {
 	private int memberCode;
 	private int carCode;
 	
+	
 
+	public Rent(int idx, int totalPrice, Timestamp rentDate , Timestamp returnDate) {
+		this.idx = idx;
+		this.totalPrice = totalPrice;
+		this.rentDate = rentDate;
+		this.returnDate = returnDate;
+	}
 
 	public Rent(int idx, int totalPrice, int rentPeriod, Timestamp returnDate, Timestamp rentDate, int memberCode,
 			int carCode) {

@@ -1,4 +1,4 @@
-package pay;
+package rentCar.domain;
 
 import java.sql.Timestamp;
 

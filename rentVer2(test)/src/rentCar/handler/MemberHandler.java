@@ -1,8 +1,10 @@
-package member;
+package rentCar.handler;
 
 import java.sql.Connection;
 import java.util.List;
 
+import rentCar.dao.MemberDao;
+import rentCar.domain.Member;
 import util.DbConn;
 import util.ScannerUtil;
 

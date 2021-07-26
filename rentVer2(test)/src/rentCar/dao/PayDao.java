@@ -1,4 +1,4 @@
-package pay;
+package rentCar.dao;
 
 public class PayDao {
 	private PayDao() {}

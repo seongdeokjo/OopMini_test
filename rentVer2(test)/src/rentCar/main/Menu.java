@@ -1,8 +1,11 @@
-package main;
+package rentCar.main;
 
-import car.*;
-import member.*;
-import rent.*;
+import rentCar.dao.CarDao;
+import rentCar.dao.MemberDao;
+import rentCar.dao.RentDao;
+import rentCar.handler.CarHandler;
+import rentCar.handler.MemberHandler;
+import rentCar.handler.RentHandler;
 
 
 public class Menu {
@@ -12,8 +15,8 @@ public class Menu {
 		CarHandler ch = new CarHandler(CarDao.getInstance());
 		RentHandler rh = new RentHandler(RentDao.getInstance());
 		//rent
-		rh.rentList();
-		rh.rentCar();
+//		rh.rentList();
+//		rh.rentCar();
 		
 		//car
 //		ch.listCar();

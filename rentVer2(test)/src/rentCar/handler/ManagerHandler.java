@@ -1,6 +1,8 @@
-package manager;
+package rentCar.handler;
 
 import java.sql.Connection;
+
+import rentCar.dao.ManagerDao;
 
 public class ManagerHandler {
 	private ManagerDao dao;

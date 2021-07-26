@@ -1,4 +1,4 @@
-package member;
+package rentCar.domain;
 
 import java.sql.Timestamp;
 
@@ -12,8 +12,13 @@ public class Member {
 	private String account;
 	private Timestamp regDate;
 	
+	
+	
+	public Member(String memberName) {
+		this.memberName = memberName;
+	}
+
 	public Member(String memberId, String memberPw, String account) {
-		super();
 		this.memberId = memberId;
 		this.memberPw = memberPw;
 		this.account = account;

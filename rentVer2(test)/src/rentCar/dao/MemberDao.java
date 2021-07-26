@@ -1,4 +1,4 @@
-package member;
+package rentCar.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import rentCar.domain.Member;
 import util.DbClose;
 
 
@@ -148,6 +149,8 @@ public class MemberDao {
 		}
 		return result;
 	}
+	
+	//나의 이용내역 확인하기
 	
 }
 

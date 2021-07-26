@@ -1,9 +1,11 @@
-package rent;
+package rentCar.handler;
 
 import java.sql.Connection;
 import java.util.List;
 
-import car.Car;
+import rentCar.dao.RentDao;
+import rentCar.domain.Car;
+import rentCar.domain.Rent;
 import util.DbConn;
 import util.ScannerUtil;
 
@@ -55,7 +57,7 @@ public class RentHandler {
 		
 		}
 	}
-	
+ 	
 	//렌트 내역 생성
 	public void rentCar() {
 		conn = DbConn.getConnecting();

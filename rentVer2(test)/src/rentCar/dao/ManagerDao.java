@@ -1,4 +1,4 @@
-package manager;
+package rentCar.dao;
 
 public class ManagerDao {
 

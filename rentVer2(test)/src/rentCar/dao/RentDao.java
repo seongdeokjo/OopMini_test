@@ -1,4 +1,4 @@
-package rent;
+package rentCar.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import car.Car;
+import rentCar.domain.Car;
+import rentCar.domain.Rent;
 import util.DbClose;
 
 public class RentDao {
@@ -129,9 +130,27 @@ public class RentDao {
 		return list;
 	}
 	
-	//반납 -> delete? 아니면 rent 칼럼 추가-> 반납완료(true) 표시 
+	
+	
+	
+	
+	//반납 -> delete? 아니면 rent 칼럼 추가-> 반납완료(true) 표시
 	//반납하고 다시 차량 이용가능여부 표시 update-> false
-	//
-	
-	
+	//반납 차량 다시 대여가능한 차량으로 변경해주는 메소드
+	public int canUseCar(Connection conn, int num) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sqlUpdate = "update car c join rent r on c.idx = r.carCode set useCar = 0 where carNumber = ?";
+		try {
+			pstmt = conn.prepareStatement(sqlUpdate);
+			pstmt.setInt(1, num);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }

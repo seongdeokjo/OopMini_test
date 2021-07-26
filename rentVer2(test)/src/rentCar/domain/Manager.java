@@ -1,4 +1,4 @@
-package manager;
+package rentCar.domain;
 
 public class Manager {
 	private int idx;

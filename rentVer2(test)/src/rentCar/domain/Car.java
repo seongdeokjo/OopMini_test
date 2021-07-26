@@ -1,4 +1,4 @@
-package car;
+package rentCar.domain;
 
 public class Car {
 	private int idx;
@@ -7,6 +7,13 @@ public class Car {
 	private int carPrice;
 	private boolean useCar;
 	
+	
+	
+	public Car(String carName, int carNumber) {
+		this.carName = carName;
+		this.carNumber = carNumber;
+	}
+
 	public Car(String carName, int carNumber, int carPrice) {
 		this.carName = carName;
 		this.carNumber = carNumber;
